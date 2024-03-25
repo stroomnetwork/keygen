@@ -11,6 +11,7 @@ type KeysOutput struct {
 	PrivateKey string `json:"private_key"`
 }
 
+// GenerateRandomKeys generates `bip-0340` compatible keys and encodes in hex.
 func GenerateRandomKeys() (*KeysOutput, error) {
 	privateKey, err := btcec.NewPrivateKey()
 	if err != nil {
