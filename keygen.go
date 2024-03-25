@@ -4,30 +4,15 @@ import (
 	"encoding/hex"
 
 	"github.com/btcsuite/btcd/btcec/v2"
-	"github.com/btcsuite/btcd/btcutil/hdkeychain"
-	"github.com/btcsuite/btcd/chaincfg"
 )
 
 type KeysOutput struct {
 	PublicKey  string `json:"public_key"`
 	PrivateKey string `json:"private_key"`
-	Network    string `json:"network"`
 }
 
-func GenerateRandomKeys(params *chaincfg.Params) (*KeysOutput, error) {
-	// Generate a random seed at the recommended length.
-	seed, err := hdkeychain.GenerateSeed(hdkeychain.RecommendedSeedLen)
-	if err != nil {
-		return nil, err
-	}
-
-	// Generate a new master node using the seed.
-	key, err := hdkeychain.NewMaster(seed, params)
-	if err != nil {
-		return nil, err
-	}
-
-	privateKey, err := key.ECPrivKey()
+func GenerateRandomKeys() (*KeysOutput, error) {
+	privateKey, err := btcec.NewPrivateKey()
 	if err != nil {
 		return nil, err
 	}
@@ -37,7 +22,6 @@ func GenerateRandomKeys(params *chaincfg.Params) (*KeysOutput, error) {
 	output := &KeysOutput{
 		PublicKey:  hex.EncodeToString(privateKey.PubKey().SerializeCompressed()),
 		PrivateKey: hex.EncodeToString(privateKey.Serialize()),
-		Network:    params.Name,
 	}
 
 	return output, nil

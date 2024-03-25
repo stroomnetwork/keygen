@@ -7,7 +7,6 @@ import (
 	"log"
 	"os"
 
-	"github.com/btcsuite/btcd/chaincfg"
 	"github.com/stroomnetwork/keygen"
 	"github.com/urfave/cli/v2"
 )
@@ -16,16 +15,11 @@ func main() {
 	app := cli.NewApp()
 	app.Name = "keygen"
 	app.Usage = "Command line tool to securely generate random keys"
+	app.DefaultCommand = "generate"
 	app.Commands = []*cli.Command{
 		{
 			Name: "generate",
 			Flags: []cli.Flag{
-				&cli.StringFlag{
-					Name:     "network",
-					Aliases:  []string{"n"},
-					Required: true,
-					Usage:    "Bitcoin network. Should be one of: [mainnet, signet, testnet, regtest]",
-				},
 				&cli.StringFlag{
 					Name:      "output",
 					Aliases:   []string{"o"},
@@ -50,22 +44,7 @@ func main() {
 }
 
 func generate(cCtx *cli.Context) error {
-	bitcoinNetwork := cCtx.String("network")
-	var params *chaincfg.Params
-	switch bitcoinNetwork {
-	case "mainnet":
-		params = &chaincfg.MainNetParams
-	case "signet":
-		params = &chaincfg.SigNetParams
-	case "testnet":
-		params = &chaincfg.TestNet3Params
-	case "regtest":
-		params = &chaincfg.RegressionNetParams
-	default:
-		return fmt.Errorf("unexpected network: '%s'", bitcoinNetwork)
-	}
-
-	keys, err := keygen.GenerateRandomKeys(params)
+	keys, err := keygen.GenerateRandomKeys()
 	if err != nil {
 		return fmt.Errorf("can't generate keys: %w", err)
 	}
