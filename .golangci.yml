@@ -1,0 +1,103 @@
+# https://golangci-lint.run/usage/configuration/
+
+run:
+  timeout: 10m
+
+linters:
+  # See available linters https://golangci-lint.run/usage/linters/
+  enable:
+    ### List from "Enabled by Default"
+    - errcheck
+    - gosimple
+    - govet
+    - ineffassign
+    - staticcheck
+    # - unused -> do not check unused code
+
+    ### List from "Disabled by Default"
+    - asciicheck
+    - asasalint
+    - bidichk
+    - containedctx
+    - contextcheck
+    - cyclop
+    - decorder
+    - dogsled
+    - dupl
+    - dupword
+    - durationcheck
+    - errname
+    - errorlint
+    - execinquery
+    - exhaustive
+    - exportloopref
+    - forcetypeassert
+    - gocheckcompilerdirectives
+    - goconst
+    - gocritic
+    - godot
+    - goerr113
+    - gofmt
+    - goimports
+    - goprintffuncname
+    - gosec
+    - grouper
+    - lll
+    - makezero
+    - misspell
+    - musttag
+    - nilerr
+    - nilnil
+    - nolintlint
+    - nosprintfhostport
+    - perfsprint
+    - prealloc
+    - predeclared
+    - protogetter
+    - reassign
+    - tagliatelle
+    - testifylint
+    - unconvert
+    - unparam
+    - usestdlibvars
+    - varnamelen
+    - wastedassign
+    - whitespace
+
+
+linters-settings:
+  godot:
+    exclude:
+      - "^TODO"
+      - "^ TODO"
+
+  lll:
+    # NB: Should be in sync with .editorconfig; Default: 120.
+    line-length: 120
+
+  varnamelen:
+    ignore-names:
+      - tx
+      - pg
+      - db
+      - to
+      - id
+      - fn
+      - wg
+      - ok
+      - ht
+      - i
+      - n
+    ignore-decls:
+      - t time.Time
+
+  whitespace:
+    # Enforces newlines (or comments) after every multi-line if statement.
+    multi-if: true
+    # Enforces newlines (or comments) after every multi-line function signature.
+    multi-func: true
+
+  exhaustive:
+    # Presence of "default" case in switch statements satisfies exhaustiveness,
+    # even if all enum members are not listed.
+    default-signifies-exhaustive: true

@@ -43,6 +43,8 @@ func main() {
 	}
 }
 
+var ErrFileAlreadyExists = errors.New("file already exists")
+
 func generate(cCtx *cli.Context) error {
 	keys, err := keygen.GenerateRandomKeys()
 	if err != nil {
@@ -59,9 +61,9 @@ func generate(cCtx *cli.Context) error {
 	}
 	// print to file
 	if fileExists(outputFile) && !cCtx.Bool("force") {
-		return fmt.Errorf("output file '%s' already exists", outputFile)
+		return fmt.Errorf("%w: %s", ErrFileAlreadyExists, outputFile)
 	}
-	err = os.WriteFile(outputFile, keysJson, 0644)
+	err = os.WriteFile(outputFile, keysJson, 0600)
 	if err != nil {
 		return fmt.Errorf("can't write to file '%s': %w", outputFile, err)
 	}
