@@ -2,7 +2,7 @@
 
 ## TODO:
 
-- [ ] Add tests
+- [x] Add tests
 - [ ] Add build matrix for different platforms
 - [ ] Add release build to publish binaries
 - [ ] Add docker packaging and release
