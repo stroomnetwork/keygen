@@ -4,8 +4,8 @@ on:
   push:
 
 jobs:
-  go:
-    name: Go Build
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -18,3 +18,17 @@ jobs:
         run: make build
       - name: Run tests
         run: make test
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.21.5'
+          cache: true
+      - name: Run lint
+        uses: golangci/golangci-lint-action@v3.7.0
+        with:
+          version: v1.55.2 # The version of golangci-lint to use.

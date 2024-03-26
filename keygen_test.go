@@ -21,6 +21,6 @@ func TestGenerateRandomKeys(t *testing.T) {
 	publicKeyBytes := publicKey.SerializeCompressed()
 	require.Equal(t, keys.PrivateKey, hex.EncodeToString(privateKeyBytes))
 	require.Equal(t, keys.PublicKey, hex.EncodeToString(publicKeyBytes))
-	require.Equal(t, 33, len(publicKeyBytes))
-	require.Equal(t, 32, len(privateKeyBytes))
+	require.Len(t, publicKeyBytes, 33)
+	require.Len(t, privateKeyBytes, 32)
 }

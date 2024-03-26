@@ -7,8 +7,8 @@ import (
 )
 
 type KeysOutput struct {
-	PublicKey  string `json:"public_key"`
-	PrivateKey string `json:"private_key"`
+	PublicKey  string `json:"publicKey"`
+	PrivateKey string `json:"privateKey"`
 }
 
 // GenerateRandomKeys generates `bip-0340` compatible keys and encodes in hex.
