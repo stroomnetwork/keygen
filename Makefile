@@ -15,13 +15,14 @@ all: help
 
 ## Build:
 
-.PHONY: build
-build: ## Build the project
-	go build -v -o ./build/keygen -installsuffix cgo -ldflags "$(LDFLAGS)" ./cmd/keygen
-
 .PHONY: test
 test: ## Run unit tests
 	go test -v ./...
+
+
+.PHONY: build
+build: test ## Build the project
+	go build -v -o ./build/keygen -installsuffix cgo -ldflags "$(LDFLAGS)" ./cmd/keygen
 
 .PHONY: clean
 clean: ## Remove build files and caches.
