@@ -10,5 +10,7 @@ FROM alpine:3.19
 
 COPY --from=builder /go/src/keygen/build/keygen /usr/local/bin/
 
+WORKDIR "/keygen"
+
 CMD ["help"]
 ENTRYPOINT ["keygen"]
