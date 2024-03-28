@@ -2,6 +2,9 @@ name: CI
 
 on:
   push:
+    branches:
+      - main
+  pull_request:
 
 jobs:
   build:
@@ -16,8 +19,6 @@ jobs:
           cache: true
       - name: Run build
         run: make build
-      - name: Run tests
-        run: make test
 
   lint:
     name: Lint

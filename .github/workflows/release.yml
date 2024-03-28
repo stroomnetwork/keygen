@@ -49,4 +49,4 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: stroomnetwork/keygen:${{ github.ref }}
+          tags: stroomnetwork/keygen:${{ github.ref_name }}
