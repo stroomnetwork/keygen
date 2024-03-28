@@ -25,6 +25,12 @@ There are the following ways to install the keygen:
 
 ## How To Use
 
+To generate a key pair and print it to console, run the following command:
+
+```shell
+keygen generate
+```
+
 To generate a key pair into a file simply invoke:
 
 ```shell
