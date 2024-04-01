@@ -17,7 +17,7 @@ So this project is aimed to simplify keys generation for users convenience.
 
 _Readme is based on the latest published version at the moment `v1.0.0`_
 
-There are the following ways to install the keygen:
+The keygen can be installed in the following ways:
 
 - Binary download from the GitHub releases page: https://github.com/stroomnetwork/keygen/releases/tag/v1.0.0
 - Download as Docker image by `docker pull stroomnetwork/keygen:v1.0.0`
